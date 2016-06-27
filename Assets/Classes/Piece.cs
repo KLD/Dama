@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Piece : MonoBehaviour
 {
-     public int Team;
+    public int Team;
 
     public bool isKing; 
 

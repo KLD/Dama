@@ -6,26 +6,33 @@ using System;
 
 public class ClickableTile : MonoBehaviour, IPointerClickHandler
 {
+    public GameController gameController; 
+
     public ClickableTile up;
     public ClickableTile down;
     public ClickableTile left;
     public ClickableTile right;
 
     public int x; 
-    public int y; 
+    public int y;
+
+    public bool movable; 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("I got clicked : " + gameObject.name); 
+        gameController.tileClicked(this); 
     }
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        movable = false; 
+    }
+
+
+    public bool isEmpty()
+    {
+        return transform.childCount == 0; 
+    }
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

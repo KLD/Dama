@@ -13,6 +13,11 @@ public class BoardGenerator : MonoBehaviour {
 
     public GameObject board;
 
+    public Sprite yellowTeamImage;
+    public Sprite blackTeamImage;
+
+    public GameController gameController; 
+
     // Use this for initialization
     void Start()
     {
@@ -31,6 +36,8 @@ public class BoardGenerator : MonoBehaviour {
             {
                 //create new tile 
                 ClickableTile newTile = GameObject.Instantiate(tile);
+
+                newTile.gameController = gameController; 
 
                 //set tile name 
                 newTile.name = "tile " + j + " " + i;
@@ -89,10 +96,18 @@ public class BoardGenerator : MonoBehaviour {
                 newPiece.Team = i / 2;
                 newPiece.name = "piece " + newPiece.Team; 
 
+                if (newPiece.Team == 0)
+                {
+                    newPiece.GetComponent<UnityEngine.UI.Image>().sprite = yellowTeamImage;
+                }
+                else
+                {
+                    newPiece.GetComponent<UnityEngine.UI.Image>().sprite = blackTeamImage;
+                }
+
                 int offset = (newPiece.Team == 1) ? 2 : 0; 
 
                 newPiece.transform.SetParent(tiles[offset + i + 1][j].transform); 
-
             }
         }
         
